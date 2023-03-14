@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import sqlite3
-import dbfunctions,moreproducts, userlogin
+import dbfunctions,moreproducts
 from flask_session import Session
 
 app = Flask(__name__)
