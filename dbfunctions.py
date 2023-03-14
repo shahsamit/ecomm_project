@@ -9,13 +9,22 @@ import sqlite3
 #    print(row)
 def getTotal():
     with sqlite3.connect("instance/todo.db") as con:
-        name = "bob"
         cur = con.cursor()
         for row in cur.execute('SELECT SUM(total) FROM cart'):
-            print(row[0])
             return(row[0])
 
 
-    
+def validateuser(name,password):
+    with sqlite3.connect("instance/todo.db") as con:
+        cur = con.cursor()
+        query='SELECT password FROM user where username ="'+name+'"'
+        for row in cur.execute(query):
+            print(row[0])
+            passwd=row[0]
+        if(passwd==password):
+            print('-------------------------------login successful')
+            return True
+        print('-------------------------------login unsuccessful')
+        return False
 # Be sure to close the connection
 #con.close()

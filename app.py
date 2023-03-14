@@ -1,13 +1,17 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import sqlite3
 import dbfunctions,moreproducts, userlogin
+from flask_session import Session
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///todo.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 con = sqlite3.connect("instance/todo.db")
 cur = con.cursor()
@@ -54,7 +58,10 @@ def hello_world():
         todo = Cart(image=image,name=name,price=price,quantity=quantity,total=total)
         db.session.add(todo)
         db.session.commit()
-    msg='You are not logged in'
+    if not session.get("name"):
+        msg='You are not logged in'
+    else:
+         msg='Welcome back, '+ session.get("name")
     return render_template('homepage.html',msg=msg)
 
 #@app.route('/', methods=['GET', 'POST'])
@@ -88,19 +95,19 @@ def hello_world3():
     allproducts=moreproducts.getproducts()
     return render_template('category.html', allproducts=allproducts)
 
-@app.route('/login')
+@app.route('/login', methods=['POST'])
 def login_fn():
     if request.method=='POST':
         name = request.form['LoginForm-name']
         password = request.form['LoginForm-pass']
-        if(userlogin.validateuser(name,password)):
-             msg="Welcome back, "+ name
-             #session
-             return redirect("/")
-        else:
-             msg="Wrong name or password. Please login again!!"
-             return render_template('homepage.html', msg=msg)
-
+        if(dbfunctions.validateuser(name,password)):
+             session["name"] = name
+        return redirect("/")
+        
+@app.route("/logout")
+def logout():
+    session["name"] = None
+    return redirect("/")
 
 @app.route('/update/<int:sno>', methods=['GET', 'POST'])
 def update(sno):
