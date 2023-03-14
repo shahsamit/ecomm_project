@@ -1,0 +1,26 @@
+import json
+import sqlite3
+
+con = sqlite3.connect("instance/todo.db")
+cur = con.cursor()
+cur.execute('Create Table if not exists user (city Text, street Text, number Text, id Text, email Text, username Text, password Text, firstname Text, lastname Text, phone Text)')
+
+records = [('kilcoole','new road','7682','1','john@gmail.com','johnd','m38rmF$','john','doe','1-570-236-7033'),
+('kilcoole','Lovers Ln','7267','2','morrison@gmail.com','mor_2314','83r5^_','david','morrison','1-570-236-7033'),
+('Cullman','Frances Ct','86','3','kevin@gmail.com','kevinryan','kev02937@','kevin','ryan','1-567-094-1345'),
+('San Antonio','Hunters Creek Dr','6454','4','don@gmail.com','donero','ewedon','don','romer','1-765-789-6734'),
+('san Antonio','adams St','245','5','derek@gmail.com','derek','jklg*_56','derek','powell','1-956-001-1945'),
+('el paso','prospect st','124','6','david_r@gmail.com','david_r','3478*#54','david','russell','1-678-345-9856'),
+('fresno','saddle st','1342','7','miriam@gmail.com','snyder','f238&@*$','miriam','snyder','1-123-943-0563'),
+('mesa','vally view ln','1342','8','william@gmail.com','hopkins','William56$hj','william','hopkins','1-478-001-0890'),
+('miami','avondale ave','345','9','kate@gmail.com','kate_h','kfejk@*_','kate','hale','1-678-456-1934'),
+('fort wayne','oak lawn ave','526','10','jimmie@gmail.com','jimmie_k','klein*#%*','jimmie','klein','1-104-001-4567')
+]
+
+cur.executemany('INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?,?);',records);
+
+
+con.commit() 
+for row in cur.execute('SELECT * FROM user'):
+    print(row)
+con.close()
