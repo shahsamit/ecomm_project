@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import sqlite3
-import dbfunctions,moreproducts
+import dbfunctions,moreproducts, userlogin
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///todo.db"
@@ -54,7 +54,8 @@ def hello_world():
         todo = Cart(image=image,name=name,price=price,quantity=quantity,total=total)
         db.session.add(todo)
         db.session.commit()
-    return render_template('homepage.html')
+    msg='You are not logged in'
+    return render_template('homepage.html',msg=msg)
 
 #@app.route('/', methods=['GET', 'POST'])
 #def hello_world():
@@ -87,11 +88,19 @@ def hello_world3():
     allproducts=moreproducts.getproducts()
     return render_template('category.html', allproducts=allproducts)
 
-@app.route('/show')
-def products():
-    allTodo = Todo.query.all()
-    print(allTodo)
-    return 'this is products page'
+@app.route('/login')
+def login_fn():
+    if request.method=='POST':
+        name = request.form['LoginForm-name']
+        password = request.form['LoginForm-pass']
+        if(userlogin.validateuser(name,password)):
+             msg="Welcome back, "+ name
+             #session
+             return redirect("/")
+        else:
+             msg="Wrong name or password. Please login again!!"
+             return render_template('homepage.html', msg=msg)
+
 
 @app.route('/update/<int:sno>', methods=['GET', 'POST'])
 def update(sno):
@@ -107,6 +116,10 @@ def update(sno):
         
     todo = Todo.query.filter_by(sno=sno).first()
     return render_template('update.html', todo=todo)
+
+@app.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+        return render_template('checkout_page.html')
 
 @app.route('/delete/<int:sno>')
 def delete(sno):
