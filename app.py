@@ -36,6 +36,15 @@ class Cart(db.Model):
     def __repr__(self) -> str:
             return f"{self.sno} - {self.name}"
 
+class ProductsInformation(db.Model):
+    sno = db.Column(db.Integer, primary_key=True)
+    prod_img = db.Column(db.String(200), nullable=False)
+    prod_name = db.Column(db.String(500), nullable=False)
+    prod_price = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self) -> str:
+            return f"{self.sno} - {self.prd_name}"
+
 #@app.route('/', methods=['GET', 'POST'])
 #def hello_world():
  #   if request.method=='POST':
@@ -44,7 +53,7 @@ class Cart(db.Model):
     #    todo = Todo(title=title, desc=desc)
      #  db.session.commit()
         
-    #allTodo = Todo.query.all()
+    #allTodo = ProductsInfo.query.all()
     #return render_template('index2.html', allTodo=allTodo)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -62,7 +71,10 @@ def hello_world():
         msg='You are not logged in'
     else:
          msg='Welcome back, '+ session.get("name")
-    return render_template('homepage.html',msg=msg)
+    #prdinfo=dbfunctions.getprd_info()
+    prdinfo=ProductsInformation.query.all()
+    print(prdinfo)
+    return render_template('homepage.html',prdinfo=prdinfo,msg=msg)
 
 #@app.route('/', methods=['GET', 'POST'])
 #def hello_world():

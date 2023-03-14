@@ -1482,47 +1482,45 @@
 			<div class="container">
 					<div class="row">
 							<div class="tt-title d-inline-block float-none w-100 text-center">special products</div>
+							
 							<div class="ttspecial-content products grid owl-carousel">
-							<div class="product-layouts">
+							{% for all in prdinfo %}
+							<div class="product-layouts" >
+							
 								<div class="product-thumb">
 									<div class="image zoom">
-										<a href="#">
-											<img src="./static/img/products/01.jpg" alt="01" height="501" width="385"/>
-											<img src="./static/img/products/02.jpg" alt="02" class="second_image img-responsive" height="501" width="385"/>										</a>
-										<ul class="countdown3 countdown">
-										  <li><span class="days">00</span><p class="days_text">Days</p></li>
-										  <li><span class="hours">00</span><p class="hours_text">Hours</p></li>
-										  <li><span class="minutes">00</span><p class="minutes_text">Minutes</p></li>
-										  <li><span class="seconds">00</span><p class="seconds_text">Seconds</p></li>
-										</ul>	
-									</div>
+										<a href="product-details.html">
+											<img src={{all.prod_img}} alt="03" height="501" width="385"/>
+											<img src={{all.prod_img}} alt="04" class="second_image img-responsive" height="501" width="385"/></a></div>
 									<div class="thumb-description">
 										<div class="caption">
-											<h4 class="product-title text-capitalize"><a href="product-details.html">Checked Polo Collar T-shirt</a></h4>
+											<h4 class="product-title text-capitalize"><a href="product-details.html">{{all.prod_name}}</a></h4>
 										</div>
 										<div class="rating">
 											<div class="product-ratings d-inline-block align-middle">
-												<span class="fa fa-stack"><i class="material-icons">star</i></span>
-											   <span class="fa fa-stack"><i class="material-icons">star</i></span>
-											   <span class="fa fa-stack"><i class="material-icons">star</i></span>
-											   <span class="fa fa-stack"><i class="material-icons off">star</i></span>
-											   <span class="fa fa-stack"><i class="material-icons off">star</i></span>									      </div>
-								      </div>
-										<div class="price">
-											<div class="regular-price">$100.00</div>
-											<div class="old-price">$150.00</div>
+											<span class="fa fa-stack"><i class="material-icons">star</i></span>
+										   <span class="fa fa-stack"><i class="material-icons">star</i></span>
+										   <span class="fa fa-stack"><i class="material-icons">star</i></span>
+										   <span class="fa fa-stack"><i class="material-icons off">star</i></span>
+										   <span class="fa fa-stack"><i class="material-icons off">star</i></span>										   </div>
 										</div>
-										<div class="button-wrapper">	
+										<div class="price">
+											<div class="regular-price">${{all.prod_price}}</div>
+											<div class="old-price">${{all.prod_price+30}}</div>
+										</div>
+										<div class="button-wrapper">
 										<div class="button-group text-center">
-												<button type="button" class="btn btn-primary btn-cart" data-toggle="modal" data-target="#product_view" disabled="disabled"><i class="material-icons">shopping_cart</i><span>Add to cart</span></button>
-												<a href="wishlist.html" class="btn btn-primary btn-wishlist"><i class="material-icons">favorite</i><span>wishlist</span></a>
-												<button type="button" class="btn btn-primary btn-compare"><i class="material-icons">equalizer</i><span>Compare</span></button>
-												<button type="button" class="btn btn-primary btn-quickview"  data-toggle="modal" data-target="#product_view"><i class="material-icons">visibility</i><span>Quick View</span></button>
-										  </div>									
-									  </div>
+											<button type="button" class="btn btn-primary btn-cart" data-target="#cart-pop" data-toggle="modal"><i class="material-icons">shopping_cart</i><span>Add to cart</span></button>
+											<a href="wishlist.html" class="btn btn-primary btn-wishlist"><i class="material-icons">favorite</i><span>wishlist</span></a>
+											<button type="button" class="btn btn-primary btn-compare"><i class="material-icons">equalizer</i><span>Compare</span></button>
+											<button type="button" class="btn btn-primary btn-quickview"  data-toggle="modal" data-target="#product_view"><i class="material-icons">visibility</i><span>Quick View</span></button>
+										</div>
+										</div>
 									</div>
 								</div>
+								
 							</div>
+							{% endfor %}
 							<div class="product-layouts">
 								<div class="product-thumb">
 									<div class="image zoom">

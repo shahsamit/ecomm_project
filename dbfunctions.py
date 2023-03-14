@@ -1,4 +1,5 @@
 import sqlite3
+import pandas as pd
 # Create a SQL connection to our SQLite database
 #con = sqlite3.connect("instance/todo.db", check_same_thread=False)
 
@@ -26,5 +27,20 @@ def validateuser(name,password):
             return True
         print('-------------------------------login unsuccessful')
         return False
+    
+def getprd_info():
+    with sqlite3.connect("instance/todo.db") as con:
+        cur = con.cursor()
+        prd_list=[]
+        prd_head=['prod_img','prod_name','prod_price']
+        for row in cur.execute('SELECT * FROM productsinfo'):
+            prd_list.append(row)
+        df=pd.DataFrame(prd_list)
+        df.columns = prd_head
+        
+        return(df)
+        
+
 # Be sure to close the connection
 #con.close()
+print(getprd_info().prod_img)
