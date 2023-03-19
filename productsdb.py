@@ -3,7 +3,9 @@ import sqlite3
 
 con = sqlite3.connect("instance/todo.db")
 cur = con.cursor()
-#cur.execute('Create Table if not exists productsinfo (prod_img Text, prod_name Text, prod_price Integer)')
+#cur.execute('drop Table productsinfo ')
+
+cur.execute('Create Table if not exists productsinfo (sr_no INTEGER PRIMARY KEY AUTOINCREMENT,prod_img Text, prod_name Text, prod_price Integer)')
 
 records = [('./static/img/products/02.jpg','Tropical Shirt Dress',100),
 ('./static/img/products/03.jpg','Shoulder Embroidered Bodysuit',110),
@@ -16,10 +18,14 @@ records = [('./static/img/products/02.jpg','Tropical Shirt Dress',100),
 ('./static/img/products/10.jpg','Printed Polo Collar T-shirt',100)
 ]
 
-cur.executemany('INSERT INTO ProductsInfo VALUES(?,?,?);',records);
+cur.executemany('INSERT INTO productsinfo(prod_img,prod_name,prod_price) VALUES(?,?,?);',records);
 
 
 con.commit() 
-for row in cur.execute('SELECT * FROM ProductsInfo'):
+for row in cur.execute('SELECT * FROM productsinfo'):
     print(row)
+
+#names = list(map(lambda x: x[0], cur.description))
+#print(names)
 con.close()
+

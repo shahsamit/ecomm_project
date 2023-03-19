@@ -36,7 +36,7 @@ class Cart(db.Model):
     def __repr__(self) -> str:
             return f"{self.sno} - {self.name}"
 
-class ProductsInformation(db.Model):
+class products(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     prod_img = db.Column(db.String(200), nullable=False)
     prod_name = db.Column(db.String(500), nullable=False)
@@ -67,14 +67,17 @@ def hello_world():
         todo = Cart(image=image,name=name,price=price,quantity=quantity,total=total)
         db.session.add(todo)
         db.session.commit()
+        
     if not session.get("name"):
         msg='You are not logged in'
     else:
          msg='Welcome back, '+ session.get("name")
     #prdinfo=dbfunctions.getprd_info()
-    prdinfo=ProductsInformation.query.all()
+    #prdinfo=products.query.all()
+    prdinfo=dbfunctions.getprd_info()
+    tcount=dbfunctions.getCount()
     print(prdinfo)
-    return render_template('homepage.html',prdinfo=prdinfo,msg=msg)
+    return render_template('homepage.html',prdinfo=prdinfo,msg=msg,tcount=tcount)
 
 #@app.route('/', methods=['GET', 'POST'])
 #def hello_world():
@@ -146,6 +149,11 @@ def delete(sno):
     db.session.delete(todo)
     db.session.commit()
     return redirect("/cart")
+
+@app.route('/add/<int:sno>',methods=['GET', 'POST'])
+def add(sno):
+    dbfunctions.addproduct(sno)
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
