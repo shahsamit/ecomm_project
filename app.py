@@ -76,8 +76,9 @@ def hello_world():
     #prdinfo=products.query.all()
     prdinfo=dbfunctions.getprd_info()
     tcount=dbfunctions.getCount()
-    print(prdinfo)
-    return render_template('homepage.html',prdinfo=prdinfo,msg=msg,tcount=tcount)
+    totalcart=dbfunctions.getTotal()
+    allCart = Cart.query.all()
+    return render_template('homepage.html',prdinfo=prdinfo,msg=msg,tcount=tcount, allCart=allCart,totalcart=totalcart)
 
 #@app.route('/', methods=['GET', 'POST'])
 #def hello_world():
@@ -149,6 +150,13 @@ def delete(sno):
     db.session.delete(todo)
     db.session.commit()
     return redirect("/cart")
+
+@app.route('/deletehomepage/<int:sno>')
+def deletehomepageproduct(sno):
+    todo = Cart.query.filter_by(sno=sno).first()
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect("/")
 
 @app.route('/add/<int:sno>',methods=['GET', 'POST'])
 def add(sno):

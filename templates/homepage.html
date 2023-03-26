@@ -103,14 +103,17 @@
                   <li>
                     <table class="table table-striped">
                       <tbody>
-                        <tr>
-                          <td class="text-center"><a href="#"><img src="./static/img/products/01.jpg" alt="01" title="01" height="104" width="80"></a></td>
-                          <td class="text-left product-name"><a href="#">aliquam quaerat voluptatem</a> 						  	
+                        
+						{% for all in allCart %}
+						<tr>
+                          <td class="text-center"><a href="#"><img src={{all.image}} alt="01" title="01" height="104" width="80"></a></td>
+                          <td class="text-left product-name"><a href="#">{{all.name}}</a> 						  	
 						  <div class="quantity float-left w-100">
-                             <span class="cart-qty">1 × </span>
-							<span class="text-left price"> $20.00</span>						    </div>                          </td>
-                          <td class="text-center close"><a class="close-cart"><i class="material-icons">close</i></a></td>
+                             <span class="cart-qty">{{all.quantity}} × </span>
+							<span class="text-left price"> ${{all.price}}</span>						    </div>                          </td>
+                          <td class="text-center close"><a  href="/deletehomepage/{{all.sno}}" class="close-cart"><i class="material-icons">close</i></a></td>
                         </tr>
+						{% endfor %}
                       </tbody>
                     </table>
                   </li>
@@ -119,7 +122,7 @@
                       <tbody>
                         <tr>
                           <td class="text-left"><strong>Total</strong></td>
-                          <td class="text-right"><strong>$2,122.00</strong></td>
+                          <td class="text-right"><strong>${{totalcart}}</strong></td>
                         </tr>
                       </tbody>
                     </table>
