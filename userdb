@@ -17,7 +17,13 @@ records = [('kilcoole','new road','7682','1','john@gmail.com','johnd','m38rmF$',
 ('fort wayne','oak lawn ave','526','10','jimmie@gmail.com','jimmie_k','klein*#%*','jimmie','klein','1-104-001-4567')
 ]
 
-cur.executemany('INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?,?);',records);
+records2 = [('kilcoole','new road','7682','1','john@gmail.com','samit','samit','samit','shah','1-570-236-7033'),
+('kilcoole','Lovers Ln','7267','2','morrison@gmail.com','ujval','ujji','ujval','shah','1-570-236-7033'),
+('Cullman','Frances Ct','86','3','kevin@gmail.com','saad','saadshah','saad','shah','1-567-094-1345'),
+('San Antonio','Hunters Creek Dr','6454','4','don@gmail.com','dhruv','dhruvshah','dhruv','shah','1-765-789-6734')
+]
+
+cur.executemany('INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?,?);',records2);
 
 
 con.commit() 

@@ -1,5 +1,5 @@
 import sqlite3
-import pandas as pd
+#import pandas as pd
 # Create a SQL connection to our SQLite database
 #con = sqlite3.connect("instance/todo.db", check_same_thread=False)
 
