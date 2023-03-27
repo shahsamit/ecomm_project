@@ -36,6 +36,15 @@ class Cart(db.Model):
     def __repr__(self) -> str:
             return f"{self.sno} - {self.name}"
 
+class products(db.Model):
+    sno = db.Column(db.Integer, primary_key=True)
+    prod_img = db.Column(db.String(200), nullable=False)
+    prod_name = db.Column(db.String(500), nullable=False)
+    prod_price = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self) -> str:
+            return f"{self.sno} - {self.prd_name}"
+
 #@app.route('/', methods=['GET', 'POST'])
 #def hello_world():
  #   if request.method=='POST':
@@ -44,7 +53,7 @@ class Cart(db.Model):
     #    todo = Todo(title=title, desc=desc)
      #  db.session.commit()
         
-    #allTodo = Todo.query.all()
+    #allTodo = ProductsInfo.query.all()
     #return render_template('index2.html', allTodo=allTodo)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -58,11 +67,18 @@ def hello_world():
         todo = Cart(image=image,name=name,price=price,quantity=quantity,total=total)
         db.session.add(todo)
         db.session.commit()
+        
     if not session.get("name"):
         msg='You are not logged in'
     else:
          msg='Welcome back, '+ session.get("name")
-    return render_template('homepage.html',msg=msg)
+    #prdinfo=dbfunctions.getprd_info()
+    #prdinfo=products.query.all()
+    prdinfo=dbfunctions.getprd_info()
+    tcount=dbfunctions.getCount()
+    totalcart=dbfunctions.getTotal()
+    allCart = Cart.query.all()
+    return render_template('homepage.html',prdinfo=prdinfo,msg=msg,tcount=tcount, allCart=allCart,totalcart=totalcart)
 
 #@app.route('/', methods=['GET', 'POST'])
 #def hello_world():
@@ -134,6 +150,18 @@ def delete(sno):
     db.session.delete(todo)
     db.session.commit()
     return redirect("/cart")
+
+@app.route('/deletehomepage/<int:sno>')
+def deletehomepageproduct(sno):
+    todo = Cart.query.filter_by(sno=sno).first()
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect("/")
+
+@app.route('/add/<int:sno>',methods=['GET', 'POST'])
+def add(sno):
+    dbfunctions.addproduct(sno)
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
