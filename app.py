@@ -140,7 +140,10 @@ def hello_world3():
         db.session.add(todo)
         db.session.commit()
     allproducts=moreproducts.getproducts()
-    return render_template('category.html', allproducts=allproducts)
+    tcount=dbfunctions.getCount()
+    totalcart=dbfunctions.getTotal()
+    allCart = Cart.query.all()
+    return render_template('category.html', allproducts=allproducts,tcount=tcount, allCart=allCart,totalcart=totalcart)
 
 @app.route('/login', methods=['POST'])
 def login_fn():
