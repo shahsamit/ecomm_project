@@ -122,17 +122,6 @@ def hello_world():
     allCart = Cart.query.all()
     return render_template('homepage.html',prdinfo=prdinfo,msg=msg,tcount=tcount, allCart=allCart,totalcart=totalcart)
 
-#@app.route('/', methods=['GET', 'POST'])
-#def hello_world():
-#        if request.method=='POST':
- #           title = request.form['title']
-  #          desc = request.form['desc']
-   #         todo = Todo(title=title, desc=desc)
-    #        db.session.commit()
-     #   return render_template('homepage.html')
-
-
-
 @app.route('/cart', methods=['GET', 'POST'])
 def hello_world2():
         totalcart=dbfunctions.getTotal()
