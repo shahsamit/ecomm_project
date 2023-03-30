@@ -85,7 +85,7 @@ def create_figure():
 def bar_with_plotly():
    
     top10=MLFunctions.getdata()
-    fig = px.bar(top10, x=top10.index, y=top10.values,  barmode='group')
+    fig = px.bar(top10, x=top10.index, y=top10.values,  barmode='group', labels={'y': 'No of sales','x': 'Countries' })
     # Create graphJSON
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     top10=MLFunctions.getdata()
