@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	    <title>Fashion Template for Bootstrap</title>
+  	    <title>Thrifty</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Demo powered by Templatetrip">
@@ -31,8 +31,8 @@
 	<div class="container">
 		<div class="nav-left float-left"><div class="ttheader-service">Wants to explore Upcoming Deals on Weekends?</div>
 		</div>
-		<div class="nav-right float-right d-flex">aspetur autodit autfugit
-		<div class="ttheader-mail"><a href="mailto:demo.store@gmail.com">demo.store@gmail.com</a></div>
+		<div class="nav-right float-right d-flex">
+		<div class="ttheader-mail"><a href="mailto:thrifty.store@gmail.com">thrifty.store@gmail.com</a></div>
 		</div>
 	</div>
 	</div>
@@ -67,7 +67,7 @@
 			</div>
 		<div class="header-middle float-lg-left float-md-left float-sm-left float-xs-none">
 				<div class="logo">
-								<a href="index.html"><img src="./static/img/logos/logo.png" alt="logo" width="200" height="50" ></a>		</div>
+								<a href="/"><img src="./static/img/logos/logo.png" alt="logo" width="200" height="50" ></a>		</div>
 		</div> 
 		<div class="header-right d-flex d-xs-flex d-sm-flex justify-content-end float-right">
 		<div class="search-wrapper"> 
@@ -128,10 +128,10 @@
                     </table>
                   </li>
                   <li class="buttons w-100 float-left">
-                    <form action="cart_page.html">
-                      <input class="btn pull-left mt_10 btn-primary btn-rounded w-100" value="View cart" type="submit">
+                    <form action="/cart">
+                      <input href="/cart" class="btn pull-left mt_10 btn-primary btn-rounded w-100" value="View cart" type="submit">
                     </form>
-                    <form action="checkout_page.html">
+                    <form action="/checkout">
                       <input class="btn pull-right mt_10 btn-primary btn-rounded w-100" value="Checkout" type="submit">
                     </form>
                   </li>
@@ -166,7 +166,7 @@
 		<!-- Links -->
 		<ul class="navbar-nav m-auto justify-content-center">
 		<li class="nav-item">
-		<a class="nav-link text-uppercase" href="category.html">
+		<a class="nav-link text-uppercase" href="/">
 			Home
 		  <span class="sr-only">(current)</span>        </a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
@@ -176,7 +176,7 @@
 		</div>
 		</li>
 		<li class="nav-item">
-		<a class="nav-link text-uppercase" href="/products">Category</a>
+		<a class="nav-link text-uppercase" href="/products">Products</a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
 		  <div class="row">
 			<div class="col-md-12 col-xl-4 sub-menu mb-xl-0 mb-4">
@@ -223,8 +223,8 @@
 		</div>
 		</li>
 		<li class="nav-item">
-		<a class="nav-link text-uppercase" href="category.html">
-			Shop
+		<a class="nav-link text-uppercase" href="/cart">
+			Cart
 		  <span class="sr-only">(current)</span>        </a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
 			<div class="sub-menu mb-xl-0 mb-4">
@@ -249,7 +249,7 @@
 		</div>
 		</li>
 		<li class="nav-item">   
-		<a class="nav-link text-uppercase" href="category.html">Blog</a>
+		<a class="nav-link text-uppercase" href="#">Blog</a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
 			<div class="sub-menu">
 			  <h6 class="sub-title text-uppercase font-weight-bold white-text d-none">Featured</h6>
@@ -274,7 +274,7 @@
 		</div>
 		</li>
 		<li class="nav-item">   
-		<a class="nav-link text-uppercase" href="category.html">More</a>
+		<a class="nav-link text-uppercase" href="/chart">Admin Dashboard</a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
 			<div class="sub-menu">
 			<ul class="list-unstyled">
@@ -327,7 +327,7 @@
 			<div class="sub-menu mb-xl-0 mb-4">
 			  <ul class="list-unstyled">
 				<li>
-				  <a class="menu-item pl-0" href="index.html">
+				  <a class="menu-item pl-0" href="/">
 					Home 1                  </a>                </li>
 				<li>
 				  <a class="menu-item pl-0" href="index2.html">
@@ -500,7 +500,7 @@
 				<div class="slider-content-wrap center effect_top">
 				  <div class="slider-title mb-20 text-capitalize float-left w-100">our specials</div>
 				  <div class="slider-subtitle mb-50 text-capitalize float-left w-100">fashion trend</div>
-				  <div class="slider-button text-uppercase float-left w-100"><a href=" #">Shop Now</a></div>
+				  <div class="slider-button text-uppercase float-left w-100"><a href="/products">Shop Now</a></div>
 				</div>
 			</div>
 			<div>
@@ -510,7 +510,7 @@
 				<div class="slider-content-wrap center effect_bottom">
 				  <div class="slider-title mb-20 text-capitalize float-left w-100">about us</div>
 				  <div class="slider-subtitle mb-50 text-capitalize float-left w-100">fashion style</div>
-				  <div class="slider-button text-uppercase float-left w-100"><a href=" #">Shop Now</a></div>
+				  <div class="slider-button text-uppercase float-left w-100"><a href="/products">Shop Now</a></div>
 				</div>
 			</div>
 	  </div>
@@ -528,7 +528,7 @@
 								<h2 class="ttbanner-heading text-uppercase float-left w-100">Womens</h2>
 								<span class="title text-uppercase float-left w-100 pb-3">collection</span> 
 								<span class="subtitle float-left w-100 py-20">Embrace the latest fashion trends for women at THRIFTY.</span> 
-								<span class="shop-now float-left w-100"><a href="#" class="d-inline-block align-top float-none btn-primary">Shop Now</a></span>							</div>
+								<span class="shop-now float-left w-100"><a href="/products" class="d-inline-block align-top float-none btn-primary">Shop Now</a></span>							</div>
 						 </div>
 					  </div>
 						  <div class="ttbanner2 ttbanner col-sm-6 col-xs-6 right-to-left hb-animate-element">
@@ -538,7 +538,7 @@
 								<h2 class="ttbanner-heading text-uppercase">Men's</h2>
 								<span class="title text-uppercase float-left w-100 pb-3">collection</span> 
 								<span class="subtitle float-left w-100 py-20">Embrace the latest fashion trends for men at THRIFTY.</span> 
-								<span class="shop-now float-left w-100"><a href="#" class="d-inline-block align-top float-none btn-primary">Shop Now</a></span>							  </div>
+								<span class="shop-now float-left w-100"><a href="/products" class="d-inline-block align-top float-none btn-primary">Shop Now</a></span>							  </div>
 							</div>
 						 </div>
 					</div>
@@ -894,7 +894,7 @@
           <div class="ttbanner-desc text-center">
             <span class="title text-uppercase">summer shop</span> 
             <span class="subtitle text-uppercase py-20">up to 70% off</span> 
-            <span class="shop-now text-capitalize"><a href="#" class="btn-primary">shop now</a></span>          </div>
+            <span class="shop-now text-capitalize"><a href="/products" class="btn-primary">shop now</a></span>          </div>
         </div>
       </div>
       <div class="ttbanner2 ttbanner col-sm-6">
@@ -903,7 +903,7 @@
           <div class="ttbanner-desc text-center">
             <span class="title text-uppercase">winter shop</span> 
             <span class="subtitle text-uppercase py-20">up to 70% off</span> 
-            <span class="shop-now text-capitalize"><a href="#" class="btn-primary">shop now</a></span>          </div>
+            <span class="shop-now text-capitalize"><a href="/products" class="btn-primary">shop now</a></span>          </div>
         </div>
       </div>
     </div>
@@ -1333,7 +1333,7 @@
             <li class="links">
                <span class="email"> 
 			  		<span class="icon"><i class="material-icons">email</i></span>
-					<span class="data"><a href="mailto:demo.store@gmail.com">demo.store@gmail.com</a></span>  </span>           </li>
+					<span class="data"><a href="mailto:demo.store@gmail.com">sukmadeek@thrifty.com</a></span>  </span>           </li>
           </ul>
         </div>
       </div>
