@@ -125,8 +125,9 @@ def hello_world():
 @app.route('/cart', methods=['GET', 'POST'])
 def hello_world2():
         totalcart=dbfunctions.getTotal()
+        tcount=dbfunctions.getCount()
         allCart = Cart.query.all()
-        return render_template('cart_page.html', allCart=allCart,totalcart=totalcart)
+        return render_template('cart_page.html', allCart=allCart,totalcart=totalcart,tcount=tcount)
 
 @app.route('/products', methods=['GET', 'POST'])
 def hello_world3():

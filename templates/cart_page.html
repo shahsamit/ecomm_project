@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Fashion Template for Bootstrap!!</title>
+  	<title>Thrifty</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +33,7 @@
 		<div class="nav-left float-left"><div class="ttheader-service">Wants to explore Upcoming Deals on Weekends?</div>
 		</div>
 		<div class="nav-right float-right d-flex">
-		<div class="ttheader-mail"><a href="mailto:demo.store@gmail.com">demo.store@gmail.com</a></div>
+		<div class="ttheader-mail"><a href="mailto:thrifty.store@gmail.com">thrifty.store@gmail.com</a></div>
 		</div>
 	</div>
 	</div>
@@ -43,11 +43,11 @@
 	<div class="container">
             <div class="header-left float-left d-flex d-lg-flex d-md-block d-xs-block">
 				<div class="language-wrapper toggle">
-				<button type="button" class="btn text-capitalize dropdown-toggle"><img src="./static/img/banner/en.png" alt="en"/><span>English</span></button>
+				<button type="button" class="btn text-capitalize dropdown-toggle"><img src="./static/img/banner/en.png" alt="en" height="12" width="18"/><span>English</span></button>
 					<div id="language-dropdown" class="language">
 					<ul>
-								<li><img src="./static/img/banner/en.png" alt="en"/><span>English</span></li>
-								<li><img src="./static/img/banner/fr.png" alt="fr"/><span>French</span></li>
+								<li><img src="./static/img/banner/en.png" alt="en" width="18" height="12"/><span>English</span></li>
+								<li><img src="./static/img/banner/fr.png" alt="fr" width="18" height="12"/><span>French</span></li>
 					</ul>
 					</div>
 				</div>
@@ -63,21 +63,20 @@
 				</div>
 				  <div class="contact">
 						<i class="material-icons">phone</i>
-						<span>1234567890</span>
+						<a href="tel:+1234567890">1234567890</a>
 				  </div>
 			</div>
-		<div class="header-middle float-left">
+		<div class="header-middle float-lg-left float-md-left float-sm-left float-xs-none">
 				<div class="logo">
-								<a href="index.html"><img src="./static/img/logos/logo.png" alt="NatureCircle"></a>		</div>
+								<a href="/"><img src="./static/img/logos/logo.png" alt="logo" width="200" height="50" ></a>		</div>
 		</div> 
-		<div class="header-right d-flex d-xs-block d-sm-flex justify-content-end float-right">
+		<div class="header-right d-flex d-xs-flex d-sm-flex justify-content-end float-right">
 		<div class="search-wrapper"> 
 			<a>
 			<i class="material-icons search">search</i>
-			<i class="material-icons close">close</i>
-			</a>
+			<i class="material-icons close">close</i>			</a>
 			<form autocomplete="off" action="/action_page.php" class="search-form">
-			  <div class="autocomplete" style="width:300px;">
+			  <div class="autocomplete">
 				<input id="myInput" type="text" name="myCountry" placeholder="Search here">
 				<button type="button"><i class="material-icons">search</i></button>
 			  </div>
@@ -85,37 +84,37 @@
 		</div>  
 		<div class="user-info">
 		<button type="button" class="btn">
-		<i class="material-icons">perm_identity</i>
-		</button>
+		<i class="material-icons">perm_identity</i>		</button>
 		<div id="user-dropdown" class="user-menu">
 		<ul>
 			<li><a href="my-account.html" class="text-capitalize">my account</a></li>
 			<li><a href="#" class="modal-view button" data-toggle="modal" data-target="#modalRegisterForm">Register</a></li>
 			<li><a href="#" class="modal-view button" data-toggle="modal" data-target="#modalLoginForm">login</a></li>
+			<li><a href="/logout">logout</a></li>
+		
 		</ul>
 		</div>
 		</div>
 		<div class="cart-wrapper">
 			<button type="button" class="btn">
 				<i class="material-icons">shopping_cart</i>
-				<span class="ttcount">2</span>
-			</button>
+				<span class="ttcount">{{tcount}}</span>			</button>
 			<div id="cart-dropdown" class="cart-menu">
                 <ul class="w-100 float-left">
                   <li>
                     <table class="table table-striped">
                       <tbody>
-                        <tr>
-                          <td class="text-center"><a href="#"><img src="./static/img/products/01.jpg" alt="01" title="01"></a></td>
-                          <td class="text-left product-name"><a href="#">aliquam quaerat voluptatem</a> 						  	
-						  <div class="quantity float-left w-100">
-                             <span class="cart-qty">1 × </span>
-							<span class="text-left price"> $20.00</span>
-						    </div>
-                          </td>
-                          <td class="text-center close"><a class="close-cart"><i class="material-icons">close</i></a></td>
-                        </tr>
                         
+						{% for all in allCart %}
+						<tr>
+                          <td class="text-center"><a href="#"><img src={{all.image}} alt="01" title="01" height="104" width="80"></a></td>
+                          <td class="text-left product-name"><a href="#">{{all.name}}</a> 						  	
+						  <div class="quantity float-left w-100">
+                             <span class="cart-qty">{{all.quantity}} × </span>
+							<span class="text-left price"> ${{all.price}}</span>						    </div>                          </td>
+                          <td class="text-center close"><a  href="/deletehomepage/{{all.sno}}" class="close-cart"><i class="material-icons">close</i></a></td>
+                        </tr>
+						{% endfor %}
                       </tbody>
                     </table>
                   </li>
@@ -124,16 +123,16 @@
                       <tbody>
                         <tr>
                           <td class="text-left"><strong>Total</strong></td>
-                          <td class="text-right"><strong>$2,122.00</strong></td>
+                          <td class="text-right"><strong>${{totalcart}}</strong></td>
                         </tr>
                       </tbody>
                     </table>
                   </li>
                   <li class="buttons w-100 float-left">
-                    <form action="cart_page.html">
-                      <input class="btn pull-left mt_10 btn-primary btn-rounded w-100" value="View cart" type="submit">
+                    <form action="/cart">
+                      <input href="/cart" class="btn pull-left mt_10 btn-primary btn-rounded w-100" value="View cart" type="submit">
                     </form>
-                    <form action="checkout_page.html">
+                    <form action="/checkout">
                       <input class="btn pull-right mt_10 btn-primary btn-rounded w-100" value="Checkout" type="submit">
                     </form>
                   </li>
@@ -143,10 +142,15 @@
 		</div>
 	</div>
 	</div> 
+	
+	<div style="text-align:center">
+	{{msg}}
+	</div>
+	
 	<div class="menu">
 	<div class="container">
 		<!-- Navbar -->
-		<nav class="navbar navbar-expand-lg navbar-light d-sm-none d-xs-none d-lg-block">
+		<nav class="navbar navbar-expand-lg navbar-light d-sm-none d-xs-none d-lg-block navbar-full">
 		
 		<!-- Navbar brand -->
 		<a class="navbar-brand text-uppercase d-none" href="#">Navbar</a>
@@ -162,50 +166,26 @@
 		
 		<!-- Links -->
 		<ul class="navbar-nav m-auto justify-content-center">
-		
-		<!-- Features -->
-		<li class="nav-item dropdown active">
-		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">
-			Features
+		<li class="nav-item">
+		<a class="nav-link text-uppercase" href="/">
+			Home
 		  <span class="sr-only">(current)</span>        </a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
 			<div class="sub-menu mb-xl-0 mb-4">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text">Featured</h6>
-			  <ul class="list-unstyled">
-				<li>
-				  <a class="menu-item pl-0" href="index.html">
-					Home 1                  </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="index2.html">
-				   Home 2                  </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="index3.html">
-					Home 3                 </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="index4.html">
-					Home 4                  </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="index5.html">
-					Home 5                  </a>                </li>
-			  </ul>
+			  
 			</div>
 		</div>
 		</li>
-		<li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">
-			Elements
-		  <span class="sr-only">(current)</span>        </a>
+		<li class="nav-item">
+		<a class="nav-link text-uppercase" href="/products">Products</a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
-			<div class="sub-menu mb-xl-0 mb-4">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text">Featured</h6>
+		  <div class="row">
+			<div class="col-md-12 col-xl-4 sub-menu mb-xl-0 mb-4">
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text">Variation 1</h6>
+			  <!--Featured image-->
 			  <ul class="list-unstyled">
-				<li>
-				  <a class="menu-item pl-0" href="accordions.html">
-					Accordions                  </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="buttons.html">
-				   Buttons              </a>                </li>
-				<li>
+				
+				 <li>
 				  <a class="menu-item pl-0" href="filter-toggle.html">
 					filter toggle                  </a>                </li>
 				<li>
@@ -216,16 +196,39 @@
 					off canvas right                </a>                </li>
 			  </ul>
 			</div>
+			<div class="col-md-6 col-xl-4 sub-menu mb-md-0 mb-4">
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text">Variation 2</h6>
+				<ul class="list-unstyled">
+				<li>
+				  <a class="menu-item pl-0" href="category-5-col.html">
+					5 columns mode                 </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="category-6-col.html">
+				   6 columns mode                     </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="category-7-col.html">
+				   7 columns mode                     </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="category-8-col.html">
+				   8 columns mode                 </a>                </li>
+			  </ul>
+			</div>
+			<div class="col-md-6 col-xl-4 sub-menu mb-0">
+		
+					<ul class="list-unstyled">
+				<li>
+					<span class="menu-banner"><img src="./static/img/banner/menu-banner.jpg" alt="menu-banner" width="161" height="230"/></span>                </li>
+			  </ul>
+			</div>
+		  </div>
 		</div>
 		</li>
-		<!-- Technology -->
-		<li class="nav-item dropdown mega-dropdown">
-		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">Technology</a>
+		<li class="nav-item">
+		<a class="nav-link text-uppercase" href="/cart">
+			Cart
+		  <span class="sr-only">(current)</span>        </a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
-		  <div class="row">
-			<div class="col-md-12 col-xl-4 sub-menu mb-xl-0 mb-4">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text">Product page</h6>
-			  <!--Featured image-->
+			<div class="sub-menu mb-xl-0 mb-4">
 			  <ul class="list-unstyled">
 				<li>
 				  <a class="menu-item pl-0" href="product-grid.html">
@@ -237,51 +240,20 @@
 				  <a class="menu-item pl-0" href="product-extended-layout.html">
 					Extended layout                 </a>                </li>
 				<li>
-				  <a class="menu-item pl-0" href="product-details.html">
+				  <a class="menu-item pl-0" href="#">
 					Default layout                </a>                </li>
 				<li>
 				  <a class="menu-item pl-0" href="product-compact.html">
 					compact layout           </a>                </li>
 			  </ul>
 			</div>
-			<div class="col-md-6 col-xl-4 sub-menu mb-md-0 mb-4">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text">Category page</h6>
-				<ul class="list-unstyled">
-				<li>
-				  <a class="menu-item pl-0" href="category-5-col.html">
-					grid 5 column                 </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="category-6-col.html">
-				   grid 6 column                  </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="category-7-col.html">
-					grid 7 column                   </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="category-8-col.html">
-					grid 8 column                </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="#!">
-					Header 5                  </a>                </li>
-			  </ul>
-			</div>
-			<div class="col-md-6 col-xl-4 sub-menu mb-0">
-		
-					<ul class="list-unstyled">
-				<li>
-					<span class="menu-banner"><img src="./static/img/banner/menu-banner.jpg" alt="menu-banner" /></span>                </li>
-			  </ul>
-			</div>
-		  </div>
 		</div>
 		</li>
-		<li class="nav-item dropdown">
-		<a class="nav-link text-uppercase" href="contact-us.html">contact us</a>      </li>
-		
-		<li class="nav-item dropdown">   
-		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">Blog</a>
+		<li class="nav-item">   
+		<a class="nav-link text-uppercase" href="#">Blog</a>
 		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
 			<div class="sub-menu">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text d-none">Featured</h6>
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text d-none">Featured</h6>
 			<ul class="list-unstyled">
 				  <li>
 				  <a class="menu-item pl-0" href="blog-2-column.html">
@@ -289,7 +261,6 @@
 				<li>
 				  <a class="menu-item pl-0" href="blog-3-column.html">
 				   blog 3 column                  </a>                </li>
-				<li>
 				<li>
 				  <a class="menu-item pl-0" href="blog-2-column-masonary.html">
 				   blog masonary                 </a>                </li>
@@ -303,6 +274,26 @@
 			</div>
 		</div>
 		</li>
+		<li class="nav-item">   
+		<a class="nav-link text-uppercase" href="/chart">Admin Dashboard</a>
+		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
+			<div class="sub-menu">
+			<ul class="list-unstyled">
+				 <li>
+				  <a class="menu-item pl-0" href="about-us.html">
+					About us                 </a>				 </li>
+					<li>
+				  <a class="menu-item pl-0" href="accordions.html">
+					Accordions                  </a>                </li>
+	              <li>
+				  <a class="menu-item pl-0" href="buttons.html">
+				   Buttons              </a>                </li>
+			  </ul>
+			</div>
+		</div>
+		</li>
+		<li class="nav-item">
+		<a class="nav-link text-uppercase" href="contact-us.html">contact us</a>      </li>
 		</ul>
 		<!-- Links -->
 		</div>
@@ -329,15 +320,15 @@
 		
 		<!-- Features -->
 		<li class="nav-item dropdown active">
-		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">
-			Features
+		<a class="nav-link dropdown-toggle text-uppercase" data-toggle="collapse" data-target="#menu1"
+		aria-controls="menu1" aria-expanded="false" aria-label="Toggle navigation" href="#">
+			Home
 		  <span class="sr-only">(current)</span>        </a>
-		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
+		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3" id="menu1">
 			<div class="sub-menu mb-xl-0 mb-4">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text">Featured</h6>
 			  <ul class="list-unstyled">
 				<li>
-				  <a class="menu-item pl-0" href="index.html">
+				  <a class="menu-item pl-0" href="/">
 					Home 1                  </a>                </li>
 				<li>
 				  <a class="menu-item pl-0" href="index2.html">
@@ -355,21 +346,16 @@
 			</div>
 		</div>
 		</li>
-		<li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">
-			Elements
-		  <span class="sr-only">(current)</span>        </a>
-		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
-			<div class="sub-menu mb-xl-0 mb-4">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text">Featured</h6>
+		<li class="nav-item dropdown mega-dropdown">
+		<a class="nav-link dropdown-toggle text-uppercase" data-toggle="collapse" data-target="#menu3"
+		aria-controls="menu3" aria-expanded="false" aria-label="Toggle navigation" href="#">Category</a>
+		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3" id="menu3">
+		  <div class="row">
+			<div class="col-md-12 col-xl-4 sub-menu mb-xl-0 mb-4">
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text">Variation 1</h6>
+			  <!--Featured image-->
 			  <ul class="list-unstyled">
-				<li>
-				  <a class="menu-item pl-0" href="accordions.html">
-					Accordions                  </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="buttons.html">
-				   Buttons              </a>                </li>
-				<li>
+				 <li>
 				  <a class="menu-item pl-0" href="filter-toggle.html">
 					filter toggle                  </a>                </li>
 				<li>
@@ -380,36 +366,8 @@
 					off canvas right                </a>                </li>
 			  </ul>
 			</div>
-		</div>
-		</li>
-		<!-- Technology -->
-		<li class="nav-item dropdown mega-dropdown">
-		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">Technology</a>
-		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
-		  <div class="row">
-			<div class="col-md-12 col-xl-4 sub-menu mb-xl-0 mb-4">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text">Product page</h6>
-			  <!--Featured image-->
-			  <ul class="list-unstyled">
-				<li>
-				  <a class="menu-item pl-0" href="product-grid.html">
-					product grid                </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="product-sticky-right.html">
-				   sticky right                  </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="product-extended-layout.html">
-					Extended layout                 </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="product-details.html">
-					Default layout                </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="product-compact.html">
-					compact layout           </a>                </li>
-			  </ul>
-			</div>
 			<div class="col-md-6 col-xl-4 sub-menu mb-md-0 mb-4">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text">Category page</h6>
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text">Variation 2</h6>
 				<ul class="list-unstyled">
 				<li>
 				  <a class="menu-item pl-0" href="category-5-col.html">
@@ -423,29 +381,57 @@
 				<li>
 				  <a class="menu-item pl-0" href="category-8-col.html">
 					grid 8 column                </a>                </li>
-				<li>
-				  <a class="menu-item pl-0" href="#!">
-					Header 5                  </a>                </li>
 			  </ul>
 			</div>
 			<div class="col-md-6 col-xl-4 sub-menu mb-0">
 		
 					<ul class="list-unstyled">
 				<li>
-					<span class="menu-banner"><img src="./static/img/banner/menu-banner.jpg" alt="menu-banner" /></span>                </li>
+					<span class="menu-banner"><img src="./static/img/banner/menu-banner.jpg" alt="menu-banner" width="210" height="300"/></span>                </li>
 			  </ul>
 			</div>
 		  </div>
 		</div>
 		</li>
-		<li class="nav-item dropdown">
-		<a class="nav-link text-uppercase" href="contact-us.html">contact us</a>      </li>
 		
-		<li class="nav-item dropdown">   
-		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">Blog</a>
-		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
+		<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle text-uppercase" data-toggle="collapse" data-target="#menu2"
+		aria-controls="menu2" aria-expanded="false" aria-label="Toggle navigation" href="#">
+			Shop
+		  <span class="sr-only">(current)</span>        </a>
+		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3" id="menu2">
+			<div class="sub-menu mb-xl-0 mb-4">
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text">Featured</h6>
+			  <ul class="list-unstyled">
+				<li>
+				  <a class="menu-item pl-0" href="product-grid.html">
+					product grid                </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="product-sticky-right.html">
+				   sticky right                  </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="product-extended-layout.html">
+					Extended layout                 </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="#">
+					Default layout                </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="product-compact.html">
+					compact layout           </a>                </li>
+			  </ul>
+			</div>
+		</div>
+		</li>
+		<!-- Technology -->
+		
+		
+		
+		<li class="nav-item">   
+		<a class="nav-link text-uppercase"  data-toggle="collapse" data-target="#menu4"
+		aria-controls="menu4" aria-expanded="false" aria-label="Toggle navigation" href="#">Blog</a>
+		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3" id="menu4">
 			<div class="sub-menu">
-			  <h6 class="sub-title text-uppercase font-weight-normal white-text d-none">Featured</h6>
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text d-none">Featured</h6>
 			<ul class="list-unstyled">
 				  <li>
 				  <a class="menu-item pl-0" href="blog-2-column.html">
@@ -453,7 +439,6 @@
 				<li>
 				  <a class="menu-item pl-0" href="blog-3-column.html">
 				   blog 3 column                  </a>                </li>
-				<li>
 				<li>
 				  <a class="menu-item pl-0" href="blog-2-column-masonary.html">
 				   blog masonary                 </a>                </li>
@@ -463,6 +448,30 @@
 				<li>
 				  <a class="menu-item pl-0" href="blog-details.html">
 				   blog details                  </a>                </li>
+			  </ul>
+			</div>
+		</div>
+		</li>
+		
+		<li class="nav-item dropdown">
+		<a class="nav-link text-uppercase" href="contact-us.html">contact us</a>      </li>
+		
+		<li class="nav-item dropdown">   
+		<a class="nav-link dropdown-toggle text-uppercase"  data-toggle="collapse" data-target="#menu5"
+		aria-controls="menu5" aria-expanded="false" aria-label="Toggle navigation" href="#">Pages</a>
+		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3" id="menu5">
+			<div class="sub-menu">
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text d-none">Featured</h6>
+			<ul class="list-unstyled">
+				  <li>
+				  <a class="menu-item pl-0" href="about-us.html">
+					About us                 </a>				 </li>
+					<li>
+				  <a class="menu-item pl-0" href="accordions.html">
+					Accordions                  </a>                </li>
+	              <li>
+				  <a class="menu-item pl-0" href="buttons.html">
+				   Buttons              </a>                </li>
 			  </ul>
 			</div>
 		</div>
@@ -478,6 +487,8 @@
 	</div>
 	</div>
 	</header>
+    
+	
 	
 	<nav aria-label="breadcrumb" class="w-100 float-left">
   <ol class="breadcrumb parallax justify-content-center" data-source-url="./static/img/banner/parallax.jpg" style="background-image: url(&quot;./static/img/banner/parallax.jpg&quot;); background-position: 50% 0.809717%;">
@@ -549,7 +560,7 @@
                                 <strong>Total</strong>
                                 <span class="c-total-price">${{totalcart+5}}</span>
                             </div>
-                            <a href="checkout_page.html" class="btn btn-primary float-left w-100 text-center">Proceed to checkout</a>
+                            <a href="/checkout" class="btn btn-primary float-left w-100 text-center">Proceed to checkout</a>
                         </div>
                     </div>
                 </div>
@@ -890,7 +901,7 @@
 					<form action="#">
                       <input class="btn pull-right mt_10 btn-primary" value="Continue shopping" type="submit">
                     </form>
-					<form action="checkout_page.html">
+					<form action="/checkout">
                       <input class="btn pull-right mt_10 btn-primary" value="Proceed to checkout" type="submit">
                     </form>
 					</div>
